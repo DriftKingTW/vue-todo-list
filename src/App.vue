@@ -5,6 +5,7 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import '@/assets/style.scss'
 
 export default {
   name: "App",
