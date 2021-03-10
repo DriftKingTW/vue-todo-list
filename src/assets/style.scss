@@ -1,0 +1,289 @@
+$color-bg: white;
+$color-txt: #2c3e50;
+$color-component-bg: white;
+$color-component-hover-bg: #e0e0e0;
+$color-control-bar-hover-bg: #fafafa;
+$color-info: #03a9f4;
+$color-success: #6bb162;
+$color-danger: #d9534f;
+$color-inactive: #e0e0e0;
+$font: Avenir, Helvetica, Arial, sans-serif;
+$input-radius-both: 10px;
+$input-radius-right: 0 10px 10px 0px;
+$input-radius-left: 10px 0 0 10px;
+$hint-txt-size: 14px;
+$box-shadow-0-3: 0px 1px 4px rgba(20%, 20%, 40%, 0.3);
+
+html {
+  background-color: $color-bg;
+}
+
+ul {
+  margin: 0;
+  padding-left: 0;
+  width: 100%;
+}
+
+#app {
+  font-family: $font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: $color-txt;
+  margin-top: 60px;
+}
+
+.hint {
+  color: $color-success;
+  text-align: left;
+  font-size: $hint-txt-size;
+}
+
+.todo-wrapper {
+  min-width: 250px;
+  margin: 0px auto 0px auto;
+  padding: 20px;
+  max-width: 900px;
+  // height: 180vh;
+  background-color: $color-component-bg;
+
+  h1 {
+    color: $color-txt;
+  }
+}
+
+.control-bar {
+  margin: 10px auto 20px auto;
+  min-height: 60px;
+  display: grid;
+  //grid-template-columns: 0.1fr 0.2fr 0.2fr 0.2fr 0.2fr 0.1fr;
+  grid-template-rows: auto;
+  grid-template-areas: ". complete-only uncomplete-only show-all clear-complete .";
+
+  @media all and (max-width: 480px) {
+    grid-template-areas:
+      ". complete-only uncomplete-only ."
+      ". show-all clear-complete .";
+  }
+
+  .ctrl-btn {
+    color: $color-info;
+    margin: 3px 2px 3px 2px;
+    cursor: pointer;
+    background-color: $color-component-bg;
+
+    &:hover {
+      background-color: $color-control-bar-hover-bg;
+      opacity: 0.8;
+    }
+  }
+}
+
+.complete-only {
+  grid-area: complete-only;
+}
+
+.uncomplete-only {
+  grid-area: uncomplete-only;
+}
+
+.show-all {
+  grid-area: show-all;
+}
+
+.clear-complete {
+  grid-area: clear-complete;
+}
+
+// TodoInput
+
+.todo-item-wrapper {
+  text-align: left;
+  min-width: 250px;
+  box-shadow: 0px 1px 4px rgba(20%, 20%, 40%, 0.3);
+}
+
+.btn-add {
+  border-radius: $input-radius-right;
+  border: none;
+  outline: none;
+  color: $color-success;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    background-color: $color-success;
+    animation: hover-coloring-add 0.3s;
+  }
+}
+
+.grid-container-input {
+  border-radius: $input-radius-both;
+  margin: 30px auto 30px auto;
+  margin-top: 30px;
+  min-height: 60px;
+  display: grid;
+  grid-template-columns: 0.9fr auto;
+  grid-template-rows: auto;
+  grid-template-areas: "input-text btn-add";
+  row-gap: 15px;
+
+  @media all and (max-width: 480px) {
+    grid-template-columns: 0.85fr auto;
+  }
+}
+
+.input-text {
+  border-radius: $input-radius-left;
+  color: $color-txt;
+  border: none;
+  padding-left: 30px;
+  grid-area: input-text;
+
+  &:focus {
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(20%, 20%, 40%, 0.5);
+  }
+}
+
+.btn-add {
+  height: 100%;
+  width: 100%;
+  grid-area: btn-add;
+
+  &:hover span {
+    transform: scale(1.2);
+    animation: hover-sizing 0.2s;
+  }
+}
+
+@keyframes hover-sizing {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes hover-coloring-add {
+  from {
+    background-color: transparent;
+    color: $color-success;
+  }
+  to {
+    background-color: $color-success;
+    color: white;
+  }
+}
+
+// TodoItem
+
+input {
+  border: none;
+  &:focus {
+    box-shadow: $box-shadow-0-3;
+  }
+}
+
+.todo-item-true {
+  input {
+    text-decoration: line-through;
+    opacity: 0.3;
+  }
+}
+
+.grid-container {
+  border-radius: $input-radius-both;
+  margin-top: 20px;
+  min-height: 60px;
+  display: grid;
+  grid-template-columns: auto 0.8fr auto;
+  grid-template-rows: auto;
+  grid-template-areas: "remove-btn todo-text completed";
+}
+
+.completed {
+  border: none;
+  color: $color-inactive;
+  background-color: transparent;
+  cursor: pointer;
+  grid-area: completed;
+
+  &:hover {
+    color: $color-success;
+    animation: hover-success 0.3s;
+
+    span {
+      transform: scale(1.2);
+      animation: hover-sizing 0.2s;
+    }
+  }
+}
+
+.true {
+  color: $color-success;
+}
+
+.false {
+  color: $color-inactive;
+}
+
+.remove-btn {
+  //border-radius: $input-radius;
+  color: $color-inactive;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  grid-area: remove-btn;
+
+  &:hover {
+    color: $color-danger;
+    animation: hover-danger 0.3s;
+
+    span {
+      transform: scale(1.2);
+      animation: hover-sizing 0.2s;
+    }
+  }
+}
+
+.todo-text {
+  word-wrap: break-word;
+  word-break: break-all;
+  padding: 20px 0 20px 0;
+  vertical-align: middle;
+  padding-left: 30px;
+  color: $color-txt;
+  grid-area: todo-text;
+}
+
+@keyframes hover-sizing {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes hover-danger {
+  from {
+    color: $color-danger;
+  }
+  to {
+    color: $color-danger;
+  }
+}
+
+@keyframes hover-success {
+  from {
+    color: $color-success;
+  }
+  to {
+    color: $color-success;
+  }
+}
+
