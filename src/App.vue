@@ -29,6 +29,7 @@
       v-if="todos.length"
       :todos="todos"
       @remove="removeTodo"
+      @complete="completeTodo"
     ></todo-list>
   </div>
 </template>
@@ -63,6 +64,12 @@ export default {
         this.todos.push(todo);
         nextId++;
       }
+    },
+    completeTodo(target) {
+      const orginalStatus = target.completed;
+      this.todos = this.todos.map(todo =>
+        todo === target ? { ...todo, completed: !orginalStatus } : todo
+      );
     },
     removeTodo(target) {
       this.todos = this.todos.filter(todo => todo !== target);

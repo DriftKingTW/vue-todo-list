@@ -4,8 +4,13 @@
       v-for="(todo, index) in todos"
       :key="index"
       class="todo-item-wrapper grid-container"
+      :class="{ 'todo-item-complete': todo.completed }"
     >
-      <button class="completed" name="complete-btn">
+      <button
+        class="completed"
+        name="complete-btn"
+        @click.prevent="$emit('complete', todo)"
+      >
         <span><font-awesome-icon :icon="['fas', 'check']"/></span>
       </button>
       <input
@@ -15,6 +20,7 @@
         v-model="todo.content"
         :key="todo.id"
         @keyup.ctrl.delete="$emit('remove', todo)"
+        @keyup.enter="$emit('complete', todo)"
       />
       <button
         class="remove-btn"
