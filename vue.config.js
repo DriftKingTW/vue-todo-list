@@ -1,9 +1,9 @@
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'production'
+        ? '/vue-todo-list/'
+        : '/',
     configureWebpack: {
         module: {
-            publicPath: process.env.NODE_ENV === 'production'
-                ? '/vue-todo-list/'
-                : '/',
             rules: [
                 // ... other rules omitted
 
