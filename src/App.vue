@@ -9,17 +9,25 @@
         type="button"
         class="ctrl-btn complete-only"
         value="Completed Only"
+        @click="customizeFilter('Completed')"
       />
       <input
         type="button"
         class="ctrl-btn uncomplete-only"
         value="Uncompleted Only"
+        @click="customizeFilter('Uncompleted')"
       />
-      <input type="button" class="ctrl-btn show-all" value="Show All Todos" />
+      <input
+        type="button"
+        class="ctrl-btn show-all"
+        value="Show All Todos"
+        @click="customizeFilter('ShowAll')"
+      />
       <input
         type="button"
         class="ctrl-btn clear-complete"
         value="Clear Completed"
+        @click="clearCompleted"
       />
     </div>
 
@@ -59,7 +67,8 @@ export default {
         const todo = {
           id: nextId,
           content: trimmedContent,
-          completed: false
+          completed: false,
+          show: true
         };
         this.todos.push(todo);
         nextId++;
@@ -73,6 +82,30 @@ export default {
     },
     removeTodo(target) {
       this.todos = this.todos.filter(todo => todo !== target);
+    },
+    clearCompleted() {
+      this.todos = this.todos.filter(todo => todo.completed !== true);
+    },
+    customizeFilter(arg) {
+      if (arg === "Completed") {
+        this.todos = this.todos.map(todo =>
+          todo.completed === false
+            ? { ...todo, show: false }
+            : { ...todo, show: true }
+        );
+      }
+      if (arg === "Uncompleted") {
+        this.todos = this.todos.map(todo =>
+          todo.completed === true
+            ? { ...todo, show: false }
+            : { ...todo, show: true }
+        );
+      }
+      if (arg === "ShowAll") {
+        this.todos = this.todos.map(todo =>
+          todo.show === false ? { ...todo, show: true } : todo
+        );
+      }
     }
   }
 };

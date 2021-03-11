@@ -5,6 +5,7 @@
       :key="index"
       class="todo-item-wrapper grid-container"
       :class="{ 'todo-item-complete': todo.completed }"
+      v-show="todo.show"
     >
       <button
         class="completed"
