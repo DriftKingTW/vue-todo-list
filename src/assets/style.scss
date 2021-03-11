@@ -100,7 +100,7 @@ ul {
 .todo-item-wrapper {
   text-align: left;
   min-width: 250px;
-  box-shadow: 0px 1px 4px rgba(20%, 20%, 40%, 0.3);
+  box-shadow: $box-shadow-0-3;
 }
 
 .btn-add {
@@ -144,7 +144,7 @@ ul {
   &:focus {
     outline: none;
     border: none;
-    box-shadow: 0px 0px 5px rgba(20%, 20%, 40%, 0.5);
+    box-shadow: $box-shadow-0-3;
   }
 }
 
@@ -184,11 +184,13 @@ ul {
 input {
   border: none;
   &:focus {
+    outline: none;
+    border: none;
     box-shadow: $box-shadow-0-3;
   }
 }
 
-.todo-item-true {
+.todo-item-complete {
   input {
     text-decoration: line-through;
     opacity: 0.3;
@@ -211,6 +213,11 @@ input {
   background-color: transparent;
   cursor: pointer;
   grid-area: completed;
+
+  &:focus {
+    outline: none;
+    border: none;
+  }
 
   &:hover {
     color: $color-success;
@@ -238,6 +245,11 @@ input {
   background-color: transparent;
   cursor: pointer;
   grid-area: remove-btn;
+
+  &:focus {
+    outline: none;
+    border: none;
+  }
 
   &:hover {
     color: $color-danger;
