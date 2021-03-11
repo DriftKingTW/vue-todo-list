@@ -25,7 +25,11 @@
 
     <span class="hint">Hint: Click text to edit!</span>
 
-    <todo-list v-if="todos.length" :todos="todos"></todo-list>
+    <todo-list
+      v-if="todos.length"
+      :todos="todos"
+      @remove="removeTodo"
+    ></todo-list>
   </div>
 </template>
 
@@ -59,6 +63,9 @@ export default {
         this.todos.push(todo);
         nextId++;
       }
+    },
+    removeTodo(target) {
+      this.todos = this.todos.filter(todo => todo !== target);
     }
   }
 };

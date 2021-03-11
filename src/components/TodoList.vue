@@ -14,8 +14,13 @@
         name="content"
         v-model="todo.content"
         :key="todo.id"
+        @keyup.ctrl.delete="$emit('remove', todo)"
       />
-      <button class="remove-btn" name="remove-btn">
+      <button
+        class="remove-btn"
+        name="remove-btn"
+        @click.prevent="$emit('remove', todo)"
+      >
         <span><font-awesome-icon :icon="['fas', 'times-circle']"/></span>
       </button>
     </div>
