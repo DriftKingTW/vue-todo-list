@@ -70,7 +70,7 @@ export default {
           completed: false,
           show: true
         };
-        this.todos.push(todo);
+        this.todos = [...this.todos, todo];
         nextId++;
       }
     },
