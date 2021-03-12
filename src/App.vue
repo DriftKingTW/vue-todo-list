@@ -60,6 +60,15 @@ export default {
       todos: []
     };
   },
+  mounted() {
+    if (localStorage.getItem("todos")) {
+      try {
+        this.todos = JSON.parse(localStorage.getItem("todos"));
+      } catch (e) {
+        localStorage.removeItem("todos");
+      }
+    }
+  },
   methods: {
     createTodo(todoContent) {
       const trimmedContent = todoContent.trim();
@@ -82,6 +91,10 @@ export default {
     },
     removeTodo(target) {
       this.todos = this.todos.filter(todo => todo !== target);
+    },
+    saveTodos() {
+      const parsed = JSON.stringify(this.todos);
+      localStorage.setItem("todos", parsed);
     },
     clearCompleted() {
       this.todos = this.todos.filter(todo => todo.completed !== true);
@@ -106,6 +119,11 @@ export default {
           todo.show === false ? { ...todo, show: true } : todo
         );
       }
+    }
+  },
+  watch: {
+    todos() {
+      this.saveTodos();
     }
   }
 };
