@@ -1,5 +1,6 @@
 <template>
   <div class="todo-wrapper">
+    <fork-me></fork-me>
     <img alt="Vue logo" src="./assets/logo.png" />
     <h1>Todo List</h1>
     <todo-input @todo-submitted="createTodo"></todo-input>
@@ -45,6 +46,7 @@
 <script>
 import TodoInput from "./components/TodoInput.vue";
 import TodoList from "./components/TodoList.vue";
+import ForkMe from "./components/ForkMe.vue";
 import "@/assets/style.scss";
 
 let nextId = 0;
@@ -53,7 +55,8 @@ export default {
   name: "App",
   components: {
     TodoInput,
-    TodoList
+    TodoList,
+    ForkMe
   },
   data() {
     return {
