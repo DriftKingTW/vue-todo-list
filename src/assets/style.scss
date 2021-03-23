@@ -24,6 +24,12 @@ ul {
   width: 100%;
 }
 
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 #app {
   font-family: $font;
   -webkit-font-smoothing: antialiased;
@@ -298,4 +304,3 @@ input {
     color: $color-success;
   }
 }
-
