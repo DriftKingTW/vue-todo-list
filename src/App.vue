@@ -38,7 +38,7 @@
       v-if="todos.length"
       :todos="todos"
       @remove="removeTodo"
-      @complete="completeTodo"
+      @complete="toggleTodo"
     ></todo-list>
   </div>
 </template>
@@ -86,7 +86,7 @@ export default {
         nextId++;
       }
     },
-    completeTodo(target) {
+    toggleTodo(target) {
       const orginalStatus = target.completed;
       this.todos = this.todos.map(todo =>
         todo === target ? { ...todo, completed: !orginalStatus } : todo
