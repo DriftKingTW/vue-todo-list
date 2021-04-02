@@ -1,4 +1,5 @@
 # vue-todo-list
+![build](https://travis-ci.org/DriftKingTW/vue-todo-list.svg?branch=master)
 
 ## Project setup
 ```
