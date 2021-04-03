@@ -47,9 +47,8 @@
 import TodoInput from "./components/TodoInput.vue";
 import TodoList from "./components/TodoList.vue";
 import ForkMe from "./components/ForkMe.vue";
+import { v4 as uuidv4 } from "uuid";
 import "@/assets/style.scss";
-
-let nextId = 0;
 
 export default {
   name: "App",
@@ -77,13 +76,12 @@ export default {
       const trimmedContent = todoContent.trim();
       if (trimmedContent) {
         const todo = {
-          id: nextId,
+          id: uuidv4(),
           content: trimmedContent,
           completed: false,
           show: true
         };
         this.todos = [...this.todos, todo];
-        nextId++;
       }
     },
     toggleTodo(target) {
