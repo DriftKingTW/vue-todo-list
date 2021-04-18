@@ -5,7 +5,7 @@
         type="text"
         name="todoContent"
         class="input-text"
-        v-model="todoContent"
+        v-model.trim="todoContent"
         @keyup.enter="onSubmit"
         placeholder="Do Something! =)"
       />

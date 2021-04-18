@@ -73,16 +73,13 @@ export default {
   },
   methods: {
     createTodo(todoContent) {
-      const trimmedContent = todoContent.trim();
-      if (trimmedContent) {
-        const todo = {
-          id: uuidv4(),
-          content: trimmedContent,
-          completed: false,
-          show: true
-        };
-        this.todos = [...this.todos, todo];
-      }
+      const todo = {
+        id: uuidv4(),
+        content: todoContent,
+        completed: false,
+        show: true
+      };
+      this.todos = [...this.todos, todo];
     },
     toggleTodo(target) {
       const orginalStatus = target.completed;
