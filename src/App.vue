@@ -53,6 +53,7 @@ export default {
   },
   methods: {
     createTodo(todoContent) {
+      if (todoContent === "") return;
       const todo = {
         id: uuidv4(),
         content: todoContent,
