@@ -5,32 +5,10 @@
     <h1>Todo List</h1>
     <todo-input @todo-submitted="createTodo"></todo-input>
 
-    <div class="control-bar">
-      <input
-        type="button"
-        class="ctrl-btn complete-only"
-        value="Completed Only"
-        @click="customizeFilter('Completed')"
-      />
-      <input
-        type="button"
-        class="ctrl-btn uncomplete-only"
-        value="Uncompleted Only"
-        @click="customizeFilter('Uncompleted')"
-      />
-      <input
-        type="button"
-        class="ctrl-btn show-all"
-        value="Show All Todos"
-        @click="customizeFilter('ShowAll')"
-      />
-      <input
-        type="button"
-        class="ctrl-btn clear-complete"
-        value="Clear Completed"
-        @click="clearCompleted"
-      />
-    </div>
+    <control-bar
+      @customizeFilter="customizeFilter"
+      @clearCompleted="clearCompleted"
+    ></control-bar>
 
     <span class="hint">Hint: Click text to edit!</span>
 
@@ -46,6 +24,7 @@
 <script>
 import TodoInput from "./components/TodoInput.vue";
 import TodoList from "./components/TodoList.vue";
+import ControlBar from "./components/ControlBar.vue";
 import ForkMe from "./components/ForkMe.vue";
 import { v4 as uuidv4 } from "uuid";
 import "@/assets/style.scss";
@@ -55,6 +34,7 @@ export default {
   components: {
     TodoInput,
     TodoList,
+    ControlBar,
     ForkMe
   },
   data() {
